@@ -17,14 +17,14 @@ app.post('/login', (req, res) => {
     // Set the session cookie
     res.cookie('auth', createToken(username), {
         domain: '.social.corp',
-        path: '/’,
+        path: '/',
         expires: new Date(Date.now() + 60 * 60 * 1000)
     });
 
     // Set tracking cookie with unique identifier
     res.cookie('tracking', createTracker(username))
    
-    res.redirect('/feed’)
+    res.redirect('/feed')
 })
 
 app.listen(port, () => {
