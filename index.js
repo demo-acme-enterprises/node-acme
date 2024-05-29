@@ -27,6 +27,11 @@ app.post('/login', (req, res) => {
     res.redirect('/feed')
 })
 
+app.get('/', (req, res) => {
+    console.log('Homepage!')
+    res.end()
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
