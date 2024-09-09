@@ -27,6 +27,14 @@ app.post('/login', (req, res) => {
     res.redirect('/feed')
 })
 
+
+app.post('/update-cart', (req, res) => {
+    res.cookie('my-cart', {
+        items: req.body.cart?.items || [],
+    })
+    res.redirect('/cart')
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
