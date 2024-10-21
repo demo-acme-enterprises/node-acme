@@ -11,7 +11,7 @@ const createToken = (un) => { return 'abc123' }
 
 app.use(csurf())
 app.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.SESSION_SECRET,
   name: 'my-session',
   cookie: { path: '/', secure: true }
 }))
@@ -28,7 +28,6 @@ app.post('/login', (req, res) => {
     res.cookie('auth', createToken(username), {
         domain: '.social.corp',
         path: '/',
-        HttpOnly: true,
         expires: new Date(Date.now() + 60 * 60 * 1000),
         secure: true
     });
