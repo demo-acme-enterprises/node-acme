@@ -27,7 +27,7 @@ app.post('/login', (req, res) => {
     // Set the session cookie
     res.cookie('auth', createToken(username), {
         domain: '.acme.corp',
-        path: '/',
+        path: '/', //test
         expires: new Date(Date.now() + 60 * 60 * 1000),
         secure: true
     });
