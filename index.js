@@ -9,6 +9,7 @@ const port = 3000
 const auth = (un, pw) => { return true }
 const createToken = (un) => { return 'abc123' }
 
+// Session
 app.use(csurf())
 app.use(session({
   secret: 'keyboard cat',
