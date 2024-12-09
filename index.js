@@ -11,7 +11,7 @@ const createToken = (un) => { return 'abc123' }
 
 app.use(csurf())
 app.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.SESSION_SECRET,
   name: 'my-session',
   cookie: { path: '/', secure: true }
 }))
