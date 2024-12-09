@@ -15,7 +15,7 @@ app.post('/login', (req, res) => {
     }
 
     // Set the session cookie
-    res.cookie('auth', { other: true }, createToken(username), {
+    res.cookie('auth', { other: true, secure: true }, createToken(username), {
         domain: '.social.corp',
         path: '/',
         expires: new Date(Date.now() + 60 * 60 * 1000)
