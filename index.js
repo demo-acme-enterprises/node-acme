@@ -23,6 +23,9 @@ app.post('/login', (req, res) => {
         res.status(400).send("Incorrect credentials");
         return;
     }
+
+    // PUsh the code
+
     res.cookie('auth', createToken(username), {
         domain: '.acme.corp',
         path: '/',
