@@ -20,6 +20,7 @@ app.use(session({
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
 
+    // Test auth
     if (!auth(username, password)) {
         res.status(400).send("Incorrect credentials");
         return;
