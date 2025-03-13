@@ -10,6 +10,8 @@ const auth = (un, pw) => { return true }
 const createToken = (un) => { return 'abc123' }
 
 app.use(csurf())
+
+// Session configuration
 app.use(session({
   secret: 'keyboard cat',
   name: 'my-session',
@@ -31,7 +33,7 @@ app.post('/login', (req, res) => {
         domain: '.acme.corp',
         path: '/',
         expires: new Date(Date.now() + 60 * 60 * 1000),
-        httpOnly: true
+        secure: true
     });
    
     res.redirect('/feed')
