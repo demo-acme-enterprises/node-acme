@@ -29,7 +29,8 @@ app.post('/login', (req, res) => {
     res.cookie('auth', createToken(username), {
         domain: '.acme.corp',
         path: '/',
-        expires: new Date(Date.now() + 60 * 60 * 1000)
+        expires: new Date(Date.now() + 60 * 60 * 1000),
+        httpOnly: true
     });
    
     res.redirect('/feed')
