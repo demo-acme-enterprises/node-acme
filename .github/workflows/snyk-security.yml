@@ -28,11 +28,26 @@ permissions:
   contents: read
 
 jobs:
-  security:
+  snyk:
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
+      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
+      - uses: actions/checkout@v4
+      - uses: snyk/actions/setup@806182742461562b67788a64410098c9d9b96adb
+
+      - name: Check Env
+        run: size=${#SNYK_TOKEN} echo $size
+
+      - name: Snyk Code Test
+        run: snyk code test --sarif-file-output=snyk-code.sarif
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: snyk-code.sarif
