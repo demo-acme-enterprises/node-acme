@@ -29,7 +29,8 @@ app.post('/login', (req, res) => {
         domain: '.acme.corp',
         path: '/',
         expires: new Date(Date.now() + 60 * 60 * 1000),
-        secure: true
+        secure: true,
+        httpOnly: true
     });
    
     res.redirect('/feed')
