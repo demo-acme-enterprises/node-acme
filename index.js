@@ -3,7 +3,7 @@ const helmet = require('helmet')
 const session = require('express-session')
 const csurf = require('csurf')
 const dotenv = require('dotenv')
-dotenv.config()
+dotenv.config() // comment here
 const app = express()
 app.use(helmet())
 const port = 3000
