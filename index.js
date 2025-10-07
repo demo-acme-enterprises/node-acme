@@ -9,7 +9,7 @@ const app = express();
 app.use(helmet());
 const port = 3000;
 
-const SECRET_TOKEN = 'abc12e2o3cenodsnlknewd';
+const SECRET_TOKEN = process.env.SECRET_TOKEN;
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
