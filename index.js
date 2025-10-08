@@ -25,6 +25,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+app.use(csurf({ cookie: true }));
 
 // Login route
 app.get('/login', (req, res) => {
