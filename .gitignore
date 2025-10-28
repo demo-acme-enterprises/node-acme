@@ -1,1 +1,7 @@
 node_modules
+
+# Snyk Security Extension - AI Rules (auto-generated)
+.github
+.github/instructions/snyk_rules.instructions.md
+.cursor
+.vscode
