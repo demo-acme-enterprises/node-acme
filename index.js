@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const session = require('express-session');
+const csrf = require('csurf');
 const path = require('path');
 
 const { lookupUserLogin } = require('./lib/db');
@@ -16,6 +17,7 @@ app.use(session({
   secret: 'keyboard cat',
   cookie: {}
 }));
+app.use(csrf());
 
 const { rateLimit } = require('express-rate-limit');
 const loginRateLimiter = rateLimit({
