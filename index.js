@@ -25,8 +25,7 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
   let { username, password } = req.body;
-  const md5Hash = createHash('md5').update(password).digest('hex');
-  lookupUserLogin(username, md5Hash).then(validLogin => {
+  lookupUserLogin(username, password).then(validLogin => {
     if (validLogin) {
       req.session.authenticated = true;
       res.redirect('/');
