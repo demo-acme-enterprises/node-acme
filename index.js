@@ -1,29 +1,24 @@
 const express = require('express');
 const helmet = require('helmet');
 const session = require('express-session');
-const csrf = require('csurf');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
 const { createHash } = require('crypto');
-const { lookupUserLogin } = require('./lib/db');
 
-const app = express();
-app.use(helmet());
+const { lookupUserLogin } = require('./lib/db');
 
 const port = 3000;
 
+const app = express();
+app.use(helmet());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-const secretKey = 'abc 1234';
 app.use(session({
-  secret: secretKey,
-  resave: false,
-  saveUninitialized: false
+  secret: 'keyboard cat',
+  cookie: {}
 }));
-app.use(csrf());
 
-// Login route added
 app.get('/login', (req, res) => {
   res.render('login', { error: null });
 });
@@ -38,9 +33,7 @@ app.post('/login', (req, res) => {
     } else {
       res.render('login', { error: 'Invalid credentials.' });
     }
-  }).catch(err => {
-    res.render('login', { error: 'An error occurred. Please try again.' });
-  });
+  })
 });
 
 function isAuthenticated(req, res, next) {
