@@ -15,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(session({
   secret: 'keyboard cat',
-  cookie: {}
+  cookie: { secure: true }
 }));
 app.use(csrf());
 
