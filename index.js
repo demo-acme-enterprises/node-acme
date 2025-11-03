@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const session = require('express-session');
+const csrf = require('csurf');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
 const { createHash } = require('crypto');
@@ -20,6 +21,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+app.use(csrf());
 
 // Login route added
 app.get('/login', (req, res) => {
